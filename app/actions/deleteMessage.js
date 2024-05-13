@@ -1,34 +1,33 @@
-'use server'
+'use server';
 
 import ConnectDB from '@/config/database'
 import Message from '@/models/Message'
 import { getSessionUser } from '@/utils/getSessionUser'
 import { revalidatePath } from 'next/cache'
 
-async function markMessageAsRead(messageId) {
+async function deleteMessage(messageId) {
   await ConnectDB();
+
   const sessionUser = await getSessionUser()
+
   if (!sessionUser || !sessionUser.user) {
     throw new Error('User ID is required')
   }
-  const { userId } = sessionUser
+
+  const { userId } = sessionUser;
 
   const message = await Message.findById(messageId)
 
-  if (!message) throw new Error('Message not found')
+  if (!message) throw new Error('Message Not Found')
 
   // Verify ownership
   if (message.recipient.toString() !== userId) {
-    return new Response('Unauthorized', { status: 401 })
+    throw new Error('Unauthorized')
   }
-  // Update message to read/unread depending on the current status
-  message.read = !message.read
 
   // revalidate cache
   revalidatePath('/messages', 'page')
+  await message.deleteOne()
+  }
 
-  await message.save()
-  return message.read
-}
-
-export default markMessageAsRead
+export default deleteMessage

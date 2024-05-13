@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {FaGoogle} from 'react-icons/fa'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
-import getUndreadMessageCount from '@/app/actions/getUnreadMessageCount'
+import UnreadMessagesCount from './UnreadMessagesCount'
 
 function getDate() {
     const today = new Date();
@@ -87,7 +87,7 @@ const Footer = () => {
                                         />
                                     </svg>
                                 </button>
-                                <getUndreadMessageCount session={session} />
+                                <UnreadMessagesCount session={session} />
                             </Link>
                             <button
                                 onClick={() => {
