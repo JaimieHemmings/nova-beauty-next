@@ -20,7 +20,8 @@ function SubmitMessageButton() {
     const [submitState, formAction] = useFormState(addMessage, {})
   
     return (
-      <section className='container'>
+      <section className='container contact-form'>
+        
         <h3>Contact Me!</h3>
         { submitState.submitted ? (
           <p>
@@ -28,6 +29,8 @@ function SubmitMessageButton() {
           </p>
         ) : (
           <form action={formAction}>
+            <div className="row">
+              <div className="col">
               <label htmlFor='name'>Name:</label>
               <input id='name' name='name' type='text' placeholder='Enter your name' required />
 
@@ -37,10 +40,15 @@ function SubmitMessageButton() {
               <label htmlFor='phone'>Phone:</label>
               <input id='phone' name='phone' type='text' placeholder='Enter your phone number' />
 
-              <label htmlFor='message'>Message:</label>
-              <textarea id='message' name='message' placeholder='Enter your message'></textarea>
+              </div>
+              <div className="col">
+                <label htmlFor='message'>Message:</label>
+                <textarea id='message' name='message' placeholder='Enter your message'></textarea>
+              </div>
+            </div>
+              
 
-            <div>
+            <div className="flex-center">
               <SubmitMessageButton />
             </div>
           </form>

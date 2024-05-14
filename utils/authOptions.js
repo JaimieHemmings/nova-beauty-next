@@ -29,7 +29,8 @@ export const authOptions = {
                 await User.create({
                     email: profile.email,
                     username,
-                    image: profile.picture
+                    image: profile.picture,
+                    isAdmin: false
                 })
             }
             return true
@@ -38,6 +39,7 @@ export const authOptions = {
         async session({ session }) {
             const user = await User.findOne({ email: session.user.email })
             session.user.id = user._id.toString()
+            session.user.isAdmin = user.isAdmin
             return session
         }
     }

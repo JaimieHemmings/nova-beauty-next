@@ -7,6 +7,7 @@ import Facials from '../../assets/images/panels/category_0007_facials.avif'
 import Lashes from '../../assets/images/panels/category_0008_eyes.avif'
 import Hair from '../../assets/images/panels/category_0006_hair.avif'
 import Brows from '../../assets/images/panels/category_0003_makeup.avif'
+import Testimonials from '@/components/Testimonials'
 
 import ConnectDB from '@/config/database'
 import Services from '@/models/Services'
@@ -158,6 +159,7 @@ const ServicesPage = async () => {
                     </div>
                 </div>
             </div>
+            <Testimonials />
         </>
     )
 }

@@ -1,9 +1,13 @@
-import React from 'react'
+import Swiper from "@/components/Swiper"
+import FaceIMG from '../../assets/images/face-line.png'
+import Testimonials from "@/components/Testimonials"
 
 const AboutPage = () => {
   return (
+    <>
+    <Swiper />
     <div>
-        <section className="about-us">
+        <section className="about-us" style={{ backgroundImage: `url(${FaceIMG.src})`}}>
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -23,6 +27,8 @@ const AboutPage = () => {
             </div>
         </section>
     </div>
+    <Testimonials />
+    </>
   )
 }
 

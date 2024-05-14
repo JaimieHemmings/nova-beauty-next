@@ -1,6 +1,10 @@
 import { Schema, model, models } from 'mongoose'
 
 const UserSchema = new Schema({
+    isAdmin: {
+        type: Boolean,
+        required: [true, 'This is required']
+    },
     email: {
         type: String,
         unique: [true, 'Email already exists'],

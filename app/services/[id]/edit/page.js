@@ -18,7 +18,7 @@ const ServiceEditPage = async ({ params }) => {
       }
 
     const updateServiceById = UpdateService.bind(null, service._id)
-
+    
   return (
     <section className="container">
       <h2>Edit Property</h2>
@@ -84,8 +84,8 @@ const ServiceEditPage = async ({ params }) => {
             />
         </div>
         <SubmitButton
-          pendingText='Updating Property...'
-          text='Update Property'
+          pendingText='Updating Service...'
+          text='Update Service'
         />
       </form>
     </section>

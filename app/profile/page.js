@@ -19,48 +19,49 @@ const ProfilePage = async () => {
   const Service = await Services.find({}).lean();
   const serviceList = Service.map(convertToSerializeableObject);
 
-  return (
-    <section className="container">
-      <div>
-        <h1>Your Profile</h1>
+    return (
+      <section className="container">
         <div>
+          <h1>Your Profile</h1>
           <div>
             <div>
-              <Image
-                className=''
-                src={sessionUser.user.image || profileDefault}
-                width={200}
-                height={200}
-                alt='User'
-              />
+              <div>
+                <Image
+                  className=''
+                  src={sessionUser.user.image || profileDefault}
+                  width={200}
+                  height={200}
+                  alt='User'
+                />
+              </div>
+              <h2>
+                <span>Name: </span>{' '}
+                {sessionUser.user.name}
+              </h2>
+              <h2>
+                <span>Email: </span>{' '}
+                {sessionUser.user.email}
+              </h2>
             </div>
-            <h2>
-              <span>Name: </span>{' '}
-              {sessionUser.user.name}
-            </h2>
-            <h2>
-              <span>Email: </span>{' '}
-              {sessionUser.user.email}
-            </h2>
-          </div>
-
-          <div>
-            <button>
-              <Link href="/profile/add-service">
-                Add a service
-              </Link>
-            </button>
-            <h2>Your Service Listings</h2>
-            {serviceList.length === 0 ? (
-              <p>You have no service listings</p>
-            ) : (
-              <ProfileProperties properties={serviceList} />
-            )}
+            {(sessionUser.user.isAdmin) &&
+              <div>
+                <button>
+                  <Link href="/profile/add-service">
+                    Add a service
+                  </Link>
+                </button>
+                <h2>Your Service Listings</h2>
+                {serviceList.length === 0 ? (
+                  <p>You have no service listings</p>
+                ) : (
+                  <ProfileProperties properties={serviceList} />
+                )}
+              </div>
+            }
           </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
 }
 
 export default ProfilePage
