@@ -1,12 +1,17 @@
 'use client'
 import { useFormStatus } from 'react-dom'
 import addService from '@/app/actions/addService'
+import { getSessionUser } from '@/utils/getSessionUser'
 
-const AddServicePage = ({
+const AddServicePage = async ({
     pendingText = 'Adding Service...',
     text = 'Add Service',
     }) => {
     const status = useFormStatus()
+
+    
+    await ConnectDB();
+    const sessionUser = await getSessionUser();
 
     if(sessionUser.user.isAdmin) {
       return (

@@ -11,7 +11,6 @@ async function addService(formData) {
     if(!sessionUser || !sessionUser.userId) {
         throw new error("User ID is required")
     }
-    const { userId } = sessionUser;
 
     const serviceData = {
         type: formData.get('type'),
