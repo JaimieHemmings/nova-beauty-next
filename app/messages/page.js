@@ -7,19 +7,22 @@ import { getSessionUser } from '@/utils/getSessionUser';
 const MessagesPage = async () => {
   await ConnectDB();
   const sessionUser = await getSessionUser();
-  const { userId } = sessionUser;
-  const readMessages = await Message.find({ recipient: userId, read: true })
-    .sort({ createdAt: -1}).lean();
 
-  const unreadMessages = await Message.find({
-    recipient: userId,
-    read: false,
-  }).sort({ createdAt: -1 }).lean();
+  let messages = '';
 
-  const messages = [...unreadMessages, ...readMessages].map((messageDoc) => {
-    const message = convertToSerializeableObject(messageDoc)
-    return message
-  })
+  if(sessionUser.user.isAdmin) {
+    const readMessages = await Message.find({ read: true })
+      .sort({ createdAt: -1}).lean();
+  
+    const unreadMessages = await Message.find({
+      read: false,
+    }).sort({ createdAt: -1 }).lean();
+  
+    messages = [...unreadMessages, ...readMessages].map((messageDoc) => {
+      const message = convertToSerializeableObject(messageDoc)
+      return message
+    })
+  }
 
   return (
     <section>
