@@ -804,3 +804,54 @@ footer .container .row .col.full-width-col {
     width: 90%;
   }
 }
+
+.profilePage .row {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.profilePage .row .col {
+  width: 50%;
+}
+
+@media screen and (max-width: 568px) {
+  .profilePage .row {
+  flex-wrap: wrap;
+}
+  .profilePage .row .col {
+    width: 100%;
+  }
+}
+
+.serviceListingTitle {
+  padding-top: 25px;
+}
+
+.serviceItem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-top: 1px solid rgba(0,0,0,0.3);
+  padding-top: 5px;
+}
+
+.actions {
+  width: 60%;
+}
+
+.actions button {
+  display: block;
+  margin-top: 25px;
+}
+
+.details {
+  width: 40%;
+}
+
+.details p {
+  padding: 5px;
+  margin: 0;
+}

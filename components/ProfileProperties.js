@@ -25,13 +25,13 @@ function ProfileProperties({ properties: initialProperties }) {
       };
   
     return services.map((service) => (
-      <div key={service._id}>
-        <div className='mt-2'>
+      <div key={service._id} className="serviceItem">
+        <div className='details'>
           <p>{service.name}</p>
           <p>{service.type}</p>
           <p>£{service.price}</p>
         </div>
-        <div className='mt-2'>
+        <div className='actions'>
           <Link
             href={`/services/${service._id}/edit`}
           >

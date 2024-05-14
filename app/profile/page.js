@@ -20,20 +20,19 @@ const ProfilePage = async () => {
   const serviceList = Service.map(convertToSerializeableObject);
 
     return (
-      <section className="container">
+      <section className="container profilePage">
         <div>
+
           <h1>Your Profile</h1>
-          <div>
-            <div>
-              <div>
-                <Image
-                  className=''
-                  src={sessionUser.user.image || profileDefault}
-                  width={200}
-                  height={200}
-                  alt='User'
-                />
-              </div>
+          <div className="row">
+            <div className="col">
+              <Image
+                className=''
+                src={sessionUser.user.image || profileDefault}
+                width={200}
+                height={200}
+                alt='User'
+              />
               <h2>
                 <span>Name: </span>{' '}
                 {sessionUser.user.name}
@@ -44,19 +43,19 @@ const ProfilePage = async () => {
               </h2>
             </div>
             {(sessionUser.user.isAdmin) &&
-              <div>
+            <div className="col">
                 <button>
                   <Link href="/profile/add-service">
                     Add a service
                   </Link>
                 </button>
-                <h2>Your Service Listings</h2>
+                <h2 className="serviceListingTitle">Your Service Listings</h2>
                 {serviceList.length === 0 ? (
                   <p>You have no service listings</p>
                 ) : (
                   <ProfileProperties properties={serviceList} />
                 )}
-              </div>
+            </div>
             }
           </div>
         </div>
