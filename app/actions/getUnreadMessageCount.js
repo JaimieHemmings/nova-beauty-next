@@ -14,10 +14,13 @@ async function getUndreadMessageCount() {
 
   const { userId } = sessionUser;
 
-  const count = await Message.countDocuments({
-    recipient: userId,
-    read: false,
-  })
+  let count = '';
+
+  if(sessionUser.user.isAdmin) {
+    count = await Message.countDocuments({
+      read: false,
+    })
+  }
 
   return { count }
 }
